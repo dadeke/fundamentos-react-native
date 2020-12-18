@@ -85,12 +85,12 @@ const CartProvider: React.FC = ({ children }) => {
   const decrement = useCallback(
     async id => {
       const updatedProducts = products
-        .filter(productFilter => productFilter.quantity > 1)
         .map(productMap =>
           productMap.id === id
             ? { ...productMap, quantity: productMap.quantity - 1 }
             : productMap,
-        );
+        )
+        .filter(productFilter => productFilter.quantity > 0);
 
       setProducts(updatedProducts);
 
